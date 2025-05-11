@@ -274,15 +274,6 @@
       tension: 0.1
     },
     {
-      label: 'Threshold (0.3)',
-      data: [],
-      borderColor: 'orange',
-      borderDash: [5, 5],
-      fill: false,
-      pointRadius: 0,
-      tension: 0
-    },
-    {
       label: 'Threshold (0.5)',
       data: [],
       borderColor: 'red',
@@ -318,6 +309,7 @@
 
     manualForm.addEventListener("submit", function(event) {
       event.preventDefault();
+      
 
       const voltage = parseFloat(document.getElementById("voltage").value);
       const current = parseFloat(document.getElementById("current").value);
@@ -402,11 +394,14 @@ function updateGraph(data) {
 
   probabilityData.labels.push(timestamp);
   probabilityData.datasets[0].data.push(prob);
-  probabilityData.datasets[1].data.push(0.3);
-  probabilityChart.data.datasets[2].data.push(0.5);                 // Threshold 0.5
-  probabilityChart.data.datasets[3].data.push(0.8);                 // Threshold 0.8
 
+  if (probabilityChart?.data?.datasets[1]) {
+  probabilityChart.data.datasets[1].data.push(0.5); // Threshold 0.5
+}
 
+if (probabilityChart?.data?.datasets[2]) {
+  probabilityChart.data.datasets[2].data.push(0.8); // Threshold 0.8
+}
   // Debugging chart update
   console.log("Updated chart data:", probabilityData);
 
