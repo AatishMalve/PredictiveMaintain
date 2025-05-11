@@ -31,7 +31,8 @@ logging.basicConfig(
 
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="."), name="static")
+
 
 
 # CORS setup
@@ -224,7 +225,6 @@ def predict_iot(data: SensorData):
         latest_iot_data.update(incoming_data)
         latest_iot_time = datetime.now()
         logging.debug(f"🗃️ Updated latest_iot_data: {latest_iot_data}")
-        logging.debug(f"🕒 Updated latest_iot_time: {latest_iot_time}")
 
         # Step 2: Check for missing fields
         missing = required_fields - latest_iot_data.keys()
