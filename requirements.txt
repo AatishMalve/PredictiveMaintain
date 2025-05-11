@@ -6,4 +6,4 @@ joblib
 python-multipart
 jinja2
 pandas
-
+gunicorn
